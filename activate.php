@@ -1,5 +1,4 @@
 ﻿<?php
-
 $dsn = 'mysql:dbname=kuponos;host=localhost';
 $user = 'root';
 $password = '';
@@ -16,7 +15,7 @@ try {
 
 
 
-$discordId = "sample"; // Ha meggondolod magad
+$discordId =  $_GET["id"]; // Ha meggondolod magad
 //$id = "s0AAddkh-482";
 $id = $_GET["id"];
 
@@ -38,10 +37,10 @@ else if($kupon == 1){
     $output =  "A kupot már felhasználták";
 }
 else{
-/*    $sql =  "update kuponok set status = ?, discordId = ? where ID = ? ";
+    $sql =  "update kuponok set status = ?, discordId = ? where ID = ? ";
     $sth	=	$con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
     $sth->execute([	1, $discordId, $id	]);
-  */
+
     $output = "Sikeresen aktiváltad a kupont";    
 }
 

@@ -1,25 +1,44 @@
-﻿<input id="kuponId"/>
-<button onClick="activate()">Beváltás</button>
-<div id="message"></div>
-
+﻿<div>
+    <div>
+        <input id="kuponId"/>
+    </div>
+    <div>
+        <input id="discordId"/>
+    </div>    
+    <div>
+        <button onClick="activate()">Beváltás</button>
+    </div>
+    <div>
+        <div id="message"></div>
+    </div>
+</div>
 <script>
 
 message = document.getElementById("message");
 
 const activate = () =>{
     id = document.getElementById("kuponId").value;
-
-    httpRequest(id).then(response => {
-        console.log(response);
-        message.innerHTML = response;
+    discordId = document.getElementById("discordId").value;
+    
+    msg = "";
+    if(discordId.length === 0){  msg += "<div>Nem adtál meg Discord ID-t</div>"; }
+    if(id.length === 0){  msg += "<div>Nem adtál meg ID-t</div>"; }
+    message.innerHTML = msg;
+    if(msg == ""){
+        httpRequest({id:id, discordId:discordId}).then(response => {  
+            message.innerHTML = response;  
         });
+    }
+
+
+  
+   
 }
 
 
-
-async function httpRequest(id) {
+async function httpRequest(obj) {
   try {
-    const response = await fetch("activate.php?id="+id, {
+    const response = await fetch("activate.php?id=" + obj.id + "&discordId=" + obj.discordId, {
        method: 'GET',
       headers: {
         Accept: 'application/json',
