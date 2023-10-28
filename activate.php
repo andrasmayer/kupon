@@ -12,13 +12,8 @@ try {
 }
 
 
-
-
-
-$discordId =  $_GET["id"]; // Ha meggondolod magad
-//$id = "s0AAddkh-482";
+$discordId =  $_GET["discordId"]; // Ha meggondolod magad
 $id = $_GET["id"];
-
 
 
 
